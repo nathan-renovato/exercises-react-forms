@@ -1,0 +1,51 @@
+.container-form {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+form {
+  align-items: center;
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  height: min-content;
+  gap: 40px;
+  justify-content: space-between;
+  padding: 40px 0;
+  width: 350px;
+}
+
+.inputs-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  width: 310px;
+}
+
+input {
+  padding: 12px 8px;
+  min-width: max-content;
+}
+
+img {
+  bottom: 6px;
+  cursor: pointer;
+  height: 24px;
+  position: absolute;
+  right: 8px;
+  width: 24px;
+}
+
+button {
+  background-color: purple;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  padding: 12px 8px;
+  text-align: center;
+  width: 310px;
+}
