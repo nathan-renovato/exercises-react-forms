@@ -27,18 +27,20 @@ function Main() {
   }
 
   return (
-    <div className="container-form">
-      <form onSubmit={(e) => handleSubmit(e)}>
+    <div className="container-main">
+      <form onSubmit={handleSubmit}>
         <h1>Login</h1>
         <div className="inputs-form">
           <input
             type="text"
             placeholder="E-mail"
+            value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
           />
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Senha"
+            value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
           />
           <img

@@ -1,4 +1,4 @@
-.container-form {
+.container-main {
   align-items: center;
   display: flex;
   justify-content: center;
@@ -7,7 +7,7 @@
 
 form {
   align-items: center;
-  border: 1px solid gray;
+  border: 1px solid lightgray;
   display: flex;
   flex-direction: column;
   height: min-content;
@@ -25,17 +25,18 @@ form {
   width: 310px;
 }
 
-input {
-  padding: 12px 8px;
-  min-width: max-content;
+input,
+button {
+  height: 52px;
+  padding: 8px;
+  width: 300px;
 }
 
 img {
-  bottom: 6px;
+  bottom: 12px;
   cursor: pointer;
-  height: 24px;
   position: absolute;
-  right: 8px;
+  right: 16px;
   width: 24px;
 }
 
@@ -45,7 +46,9 @@ button {
   border-radius: 5px;
   color: white;
   cursor: pointer;
-  padding: 12px 8px;
   text-align: center;
-  width: 310px;
+}
+
+button:hover {
+  opacity: 0.9;
 }
