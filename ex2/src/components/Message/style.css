@@ -1,0 +1,32 @@
+.container-link {
+  align-items: center;
+  color: #000;
+  display: flex;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  gap: 4px;
+  line-height: 19px;
+}
+
+a {
+  color: #000;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.img-registration-done {
+  width: 60%;
+}
+
+h2 {
+  color: #0b2f49;
+}
+
+.img-logo {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100%;
+  width: 45%;
+}

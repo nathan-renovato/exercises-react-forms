@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./style.css";
-import OpenEyeIcon from "../../assets/open-eye.svg";
-import CloseEyeIcon from "../../assets/close-eye.svg";
 import RegisteredSucessfullyImage from "../../assets/woman-success.png";
 import BackgroundImage from "../../assets/background.jpg";
+import Message from "../../components/Message";
+import InputPassword from "../../components/InputPassword";
 
 function SignUp() {
   const [registeredSucessfully, setRegisteredSucessfully] = useState(false);
@@ -14,6 +14,13 @@ function SignUp() {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+
+  function handleChangeForm(e) {
+    setError("");
+    const value = e.target.value;
+
+    setForm({ ...form, [e.target.name]: value });
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -38,71 +45,59 @@ function SignUp() {
 
   return (
     <div className="signup">
-      <div
-        className="container-signup"
-        style={
-          registeredSucessfully ? { display: "none" } : { display: "flex" }
-        }
-      >
-        <form onSubmit={handleSubmit}>
+      {!registeredSucessfully && (
+        <div className="container-signup">
           <h1>Cadastre-se</h1>
-          <div className="container-inputs">
-            <input
-              type="text"
-              placeholder="Nome"
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-            />
-            <input
-              type="text"
-              placeholder="E-mail"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-            />
-            <div className="container-input-password">
+          <form onSubmit={handleSubmit}>
+            <div className="container-inputs">
               <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Senha"
-                value={form.password}
-                onChange={(e) => setForm({ ...form, password: e.target.value })}
+                name="name"
+                type="text"
+                placeholder="Nome"
+                value={form.name}
+                onChange={(e) => handleChangeForm(e)}
               />
-              <img
-                src={showPassword ? OpenEyeIcon : CloseEyeIcon}
-                alt="ícone mostrar senha"
-                className="eye-icon"
-                onClick={() => setShowPassword(!showPassword)}
+              <input
+                name="email"
+                type="text"
+                placeholder="E-mail"
+                value={form.email}
+                onChange={(e) => handleChangeForm(e)}
               />
+              <InputPassword
+                showPassword={showPassword}
+                form={form}
+                handleChangeForm={handleChangeForm}
+                setShowPassword={setShowPassword}
+              />
+
+              {error && <span className="error-message">{error}</span>}
             </div>
-            <span className="error-message">{error}</span>
+            <div className="container-buttons">
+              <button type="submit" className="btn-red">
+                CADASTRAR
+              </button>
+              <button
+                type="button"
+                className="btn-blue"
+                onClick={() => handleClearInputs()}
+              >
+                CANCELAR
+              </button>
+            </div>
+          </form>
+          <div className="container-link">
+            <span>Já tem cadastro?</span>
+            <a href="https://google.com">Clique aqui</a>
           </div>
-          <div className="container-buttons">
-            <button className="btn-register">CADASTRAR</button>
-            <button
-              type="button"
-              className="btn-cancel"
-              onClick={() => handleClearInputs()}
-            >
-              CANCELAR
-            </button>
-          </div>
-          <span>
-            Já tem cadastro? <a>Clique aqui</a>
-          </span>
-        </form>
-      </div>
-      <div
-        className="container-registered-sucessfully"
-        style={
-          registeredSucessfully ? { display: "flex" } : { display: "none" }
-        }
-      >
-        <img
-          src={RegisteredSucessfullyImage}
-          alt="cadastro realizado com sucesso"
-          className="img-registration-done"
+        </div>
+      )}
+      {registeredSucessfully && (
+        <Message
+          message="Cadastro efetuado com sucesso!"
+          image={RegisteredSucessfullyImage}
         />
-        <h2>Cadastro efetuado com sucesso!</h2>
-      </div>
+      )}
       <div
         className="img-logo"
         style={{ backgroundImage: `url(${BackgroundImage})` }}
